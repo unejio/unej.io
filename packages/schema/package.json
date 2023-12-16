@@ -1,0 +1,13 @@
+{
+	"name": "@unej.io/schema",
+	"type": "module",
+	"private": true,
+	"dependencies": {
+		"@unej.io/util": "workspace:*",
+		"valibot": "^0.24.1"
+	},
+	"devDependencies": {
+		"@unej.io/config": "workspace:*",
+		"@unej.io/tsconfig": "workspace:*"
+	}
+}

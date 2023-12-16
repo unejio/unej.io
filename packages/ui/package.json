@@ -1,0 +1,26 @@
+{
+	"name": "@unej.io/ui",
+	"type": "module",
+	"private": true,
+	"scripts": {
+		"test": "vitest --run"
+	},
+	"dependencies": {
+		"@klass/core": "^3.4.10",
+		"@klass/react": "^3.4.10",
+		"clsx": "^2.0.0",
+		"cmdk": "^0.2.0",
+		"react": "^18.2.0",
+		"react-aria": "^3.30.0",
+		"react-dom": "^18.2.0",
+		"react-stately": "^3.28.0",
+		"react-use": "^17.4.2"
+	},
+	"devDependencies": {
+		"@testing-library/react": "^14.1.2",
+		"@types/react": "^18.2.45",
+		"@types/react-dom": "^18.2.18",
+		"@unej.io/config": "workspace:*",
+		"@unej.io/tsconfig": "workspace:*"
+	}
+}

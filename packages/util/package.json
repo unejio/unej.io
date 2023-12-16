@@ -1,0 +1,14 @@
+{
+	"name": "@unej.io/util",
+	"type": "module",
+	"private": true,
+	"scripts": {
+		"test": "vitest --run"
+	},
+	"devDependencies": {
+		"@types/node": "^20.10.4",
+		"@unej.io/config": "workspace:*",
+		"@unej.io/tsconfig": "workspace:*",
+		"vite": "^5.0.10"
+	}
+}

@@ -1,0 +1,15 @@
+---
+import HTML from '~/components/HTML.astro';
+
+import { Spring } from './_index/components.tsx';
+---
+
+<HTML>
+	<Fragment slot="body">
+		<div>
+			<div class="flex h-screen w-screen items-center justify-center">
+				<Spring client:idle />
+			</div>
+		</div>
+	</Fragment>
+</HTML>

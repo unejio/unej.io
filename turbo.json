@@ -1,0 +1,22 @@
+{
+	"$schema": "https://turbo.build/schema.json",
+	"globalDotEnv": [".env"],
+	"pipeline": {
+		"dev": {
+			"cache": false
+		},
+		"build": {
+			"cache": true,
+			"dependsOn": ["^build"],
+			"outputs": ["dist/**"]
+		},
+		"preview": {
+			"cache": false
+		},
+		"test": {
+			"cache": true,
+			"dependsOn": ["^test"],
+			"outputs": ["test-output/**"]
+		}
+	}
+}

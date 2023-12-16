@@ -1,0 +1,10 @@
+{
+	"name": "@unej.io/env",
+	"type": "module",
+	"private": true,
+	"devDependencies": {
+		"@types/node": "^20.10.4",
+		"@unej.io/tsconfig": "workspace:*",
+		"vite": "^5.0.10"
+	}
+}

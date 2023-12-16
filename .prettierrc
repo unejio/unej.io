@@ -1,0 +1,21 @@
+{
+	"$schema": "https://json.schemastore.org/prettierrc",
+	"plugins": ["prettier-plugin-astro", "prettier-plugin-tailwindcss"],
+	"semi": true,
+	"useTabs": true,
+	"singleQuote": true,
+	"trailingComma": "es5",
+	"printWidth": 144,
+	"overrides": [
+		{
+			"files": "*.astro",
+			"options": {
+				"parser": "astro"
+			}
+		}
+	],
+	"astroAllowShorthand": true,
+	"tailwindAttributes": ["class", "className"],
+	"tailwindConfig": "./packages/config/tailwindcss/abstract.ts",
+	"tailwindFunctions": ["klass", "reklass", "klassed", "reklassed", "clsx"]
+}

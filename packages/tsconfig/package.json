@@ -1,0 +1,5 @@
+{
+	"name": "@unej.io/tsconfig",
+	"type": "module",
+	"private": true
+}

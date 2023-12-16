@@ -1,0 +1,22 @@
+{
+	"name": "@unej.io/x-valibot",
+	"type": "module",
+	"private": true,
+	"scripts": {
+		"test": "vitest --run"
+	},
+	"dependencies": {
+		"hono": "^3.11.7",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"react-router-dom": "^6.21.0",
+		"valibot": "^0.24.1"
+	},
+	"devDependencies": {
+		"@testing-library/react": "^14.1.2",
+		"@types/react": "^18.2.45",
+		"@types/react-dom": "^18.2.18",
+		"@unej.io/config": "workspace:*",
+		"@unej.io/tsconfig": "workspace:*"
+	}
+}

@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	body {
+		@apply bg-n-1 font-sans text-z3 font-w4 text-n-12;
+	}
+}

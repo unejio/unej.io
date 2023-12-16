@@ -1,0 +1,105 @@
+name: Deploy
+
+on:
+  push:
+    branches: ['main']
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  build:
+    name: Build
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+      deployments: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8.11.0
+
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Run install
+        run: pnpm install
+
+      - name: Run build
+        run: pnpm build
+        env:
+          PUBLIC_HOST_SITE: 'https://unejio.pages.dev'
+          PUBLIC_HOST_BIO: 'https://bio-unejio.pages.dev'
+          PUBLIC_HOST_WEB: 'https://web-unejio.pages.dev'
+          PUBLIC_HOST_ADMIN: 'https://admin-unejio.pages.dev'
+          PUBLIC_HOST_API: 'https://api-unejio.deno.dev'
+          PUBLIC_HOST_S: 'https://s-unejio.deno.dev'
+          PUBLIC_HOST_IMG: 'https://img-unejio.deno.dev'
+
+      - name: Upload @unej.io/~site to Cloudflare Pages
+        uses: cloudflare/pages-action@1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: unejio
+          directory: apps/site/dist
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload @unej.io/~bio to Cloudflare Pages
+        uses: cloudflare/pages-action@1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: bio-unejio
+          directory: apps/bio/dist
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload @unej.io/~web to Cloudflare Pages
+        uses: cloudflare/pages-action@1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: web-unejio
+          directory: apps/web/dist
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload @unej.io/~admin to Cloudflare Pages
+        uses: cloudflare/pages-action@1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: admin-unejio
+          directory: apps/admin/dist
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload @unej.io/~api to Deno Deploy
+        uses: denoland/deployctl@v1
+        with:
+          project: 'api-unejio'
+          entrypoint: 'main.js'
+          root: './apps/api/dist'
+
+      - name: Upload @unej.io/~s to Deno Deploy
+        uses: denoland/deployctl@v1
+        with:
+          project: 's-unejio'
+          entrypoint: 'main.js'
+          root: './apps/s/dist'
+
+      - name: Upload @unej.io/~img to Deno Deploy
+        uses: denoland/deployctl@v1
+        with:
+          project: 'img-unejio'
+          entrypoint: 'main.js'
+          root: './apps/img/dist'
